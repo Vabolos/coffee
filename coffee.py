@@ -17,7 +17,7 @@ intents = discord.Intents.all()
 intents.members = True
 intents.message_content = True
 bot = discord.Client(intents=intents)
-TOKEN = 'MTExMjM3NjAzMjY0MTY4NzU2Mw.G1MDn1.T_dvOLoYFM4xhB1E65R2_eLoLvINLG0X2yc_f8'
+TOKEN = 'TOKEN HERE'
 command = app_commands.CommandTree(bot)
 start_time = datetime.now().replace(microsecond=0)
 
@@ -29,7 +29,7 @@ start_time = datetime.now().replace(microsecond=0)
 # sync commands
 @command.command(name='sync', description='Owner only')
 async def sync(interaction: discord.Interaction):
-    if interaction.user.id == 419195631198928906:
+    if interaction.user.id == userID here:
         await command.sync()
         print('Command tree synced.')
     else:
@@ -38,11 +38,11 @@ async def sync(interaction: discord.Interaction):
 #bot is ready for combat
 @bot.event
 async def on_ready():
-    await command.sync(guild=discord.Object(id=999343305659777103))
+    await command.sync(guild=discord.Object(id=serverID here))
     user_id = bot.user.id
     embed = discord.Embed(title="I'm ready!", description="Bot is ready to serve the coffee shop!", color=0x6a4a3a)
     embed.set_footer(text="ID: " + str(user_id) + " • " + str(datetime.now().strftime("%H:%M")))
-    await bot.get_channel(1112371376746135634).send(embed=embed)
+    await bot.get_channel(channelID here).send(embed=embed)
         # Setting `Watching ` status
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="the guests!"))
     print("\nReady for reservations!")
@@ -54,19 +54,19 @@ async def node_connect():
 
 @bot.event
 async def on_wavelink_node_ready(node: wavelink.Node):
-    channel = bot.get_channel(1112371376746135634)
+    channel = bot.get_channel(channelID here)
     await channel.send(f':arrow_forward: `Lavalink` - Node, ID= **{node.identifier}** is ready!')
     print(f"Node {node.identifier} is ready!") 
 
 # restarts the bot
-@command.command(description="Restart bot!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Restart bot!", guild=discord.Object(id=serverID here))
 @app_commands.default_permissions(administrator=True)
 async def restart(interaction: discord.Interaction):
-    if interaction.user.id == 419195631198928906:
+    if interaction.user.id == userID here:
         await interaction.response.send_message("Restarting...")
         now = datetime.now()
         current_time = now.strftime("%d %B - %H:%M:%S")
-        channel = bot.get_channel(1112371376746135634)
+        channel = bot.get_channel(channelID here)
         await channel.send(f"> `{current_time}` - Bot is restarting...")
         print("Bot is restarting...")
         os.execl(sys.executable, sys.executable, *sys.argv)
@@ -74,19 +74,19 @@ async def restart(interaction: discord.Interaction):
         await interaction.response.send_message("You don't have permission to use this command!")
         now = datetime.now()
         current_time = now.strftime("%d %B - %H:%M:%S")
-        channel = bot.get_channel(1112371376746135634)
+        channel = bot.get_channel(channelID here)
         await channel.send(f"> `{current_time}` - {interaction.user.mention} tried to restart the bot!")
         print("Unauthorized access attempt by " + str(interaction.user))
 
 # shuts down the bot
-@command.command(description="Shuts down the bot!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Shuts down the bot!", guild=discord.Object(id=serverID here))
 @app_commands.default_permissions(administrator=True)
 async def shutdown(interaction: discord.Interaction):
-    if interaction.user.id == 419195631198928906:
+    if interaction.user.id == userID here:
         await interaction.response.send_message("shutting down...")
         now = datetime.now()
         current_time = now.strftime("%d %B - %H:%M:%S")
-        channel = bot.get_channel(1112371376746135634)
+        channel = bot.get_channel(channelID here)
         await channel.send(f"❗ `{current_time}` - Bot is shutting down...")
         print("Bot is shutting down...")
         sys.exit()
@@ -94,30 +94,30 @@ async def shutdown(interaction: discord.Interaction):
         await interaction.response.send_message("You are not allowed to shut down the bot!")
         now = datetime.now()
         current_time = now.strftime("%d %B - %H:%M:%S")
-        channel = bot.get_channel(1112371376746135634)
+        channel = bot.get_channel(channelID here)
         await channel.send(f"❗ `{current_time}` - {interaction.user.mention} tried to shut down the bot!")
         print("Unauthorized access attempt by " + str(interaction.user))
 
 @bot.event
 async def on_member_join(member: discord.Member):
-    channel = bot.get_channel(1110266590164946975)
+    channel = bot.get_channel(channelID here)
     message_content = f"Welcome {member.mention} to the Coffee Shop!"
     embed = discord.Embed(
         title="Enjoy your stay!",
-        description=f"Thank you for joining! Please make sure to read the <#999343307383644170> and have a great time! :coffee: \n \n You can chat both here and in https://discord.com/channels/999343305659777103/1111391868022956122 \n",
+        description=f"Thank you for joining! Please make sure to read the <#rulechannelD here> and have a great time! :coffee: \n \n You can chat both here and in channelLINK \n",
         color=0x6a4a3a
     )
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/1034538860165730376/1112840193477726339/5650-marshmallow-pusheen.gif")
     embed.set_image(url="https://cdn.discordapp.com/attachments/1008706439310753832/1028539043518103562/IMG_0443.jpg")
     embed.set_footer(text="The Coffee Shop")
-    role = discord.utils.get(member.guild.roles, id=999343305659777109)
+    role = discord.utils.get(member.guild.roles, id=roleID here)
     await member.add_roles(role)
 
     # Create custom button linked to a custom VC
-    custom_vc_button = Button(style=discord.ButtonStyle.grey, label="☕ Join Custom VC", url="https://discord.com/channels/999343305659777103/1112382870623899758")
+    custom_vc_button = Button(style=discord.ButtonStyle.grey, label="☕ Join Custom VC", url="channelLINK here")
 
     # Create normal button linked to a normal VC
-    normal_vc_button = Button(style=discord.ButtonStyle.grey, label="🍵 Join Normal VC", url="https://discord.com/channels/999343305659777103/999343307790499912")
+    normal_vc_button = Button(style=discord.ButtonStyle.grey, label="🍵 Join Normal VC", url="channelLINK here")
 
     # Add buttons to the view
     view = View()
@@ -144,7 +144,7 @@ async def on_message_delete(message):
     snipe_message_author = None
     snipe_message_content = None
 
-@command.command(description="Snipes the last deleted message!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Snipes the last deleted message!", guild=discord.Object(id=serverID here))
 async def snipe(interaction: discord.Interaction):
     if snipe_message_content == None:
         await interaction.response.send_message("There is nothing to snipe!")
@@ -176,7 +176,7 @@ async def on_message_edit(before, after):
     edit_snipe_message_before = None
     edit_snipe_message_after = None
 
-@command.command(description="Snipes the last edited message!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Snipes the last edited message!", guild=discord.Object(id=serverID here))
 async def editsnipe(interaction: discord.Interaction):
     if edit_snipe_message_before == None:
         await interaction.response.send_message("There is nothing to snipe!")
@@ -190,7 +190,7 @@ async def editsnipe(interaction: discord.Interaction):
 
 
 # /showavatar command
-@command.command(description="Show avatar!", guild=discord.Object(id=999343305659777103))    
+@command.command(description="Show avatar!", guild=discord.Object(id=serverID here))    
 @app_commands.describe(show='Input username')
 async def avatar(interaction: discord.Interaction, show: discord.User):
     userAvatar = show.display_avatar
@@ -201,7 +201,7 @@ async def avatar(interaction: discord.Interaction, show: discord.User):
 
 
 #purge command
-@command.command(description="Purge messages!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Purge messages!", guild=discord.Object(id=serverID here))
 @app_commands.default_permissions(manage_messages=True)
 @app_commands.describe(amount='Input amount')
 async def purge(interaction: discord.Interaction, amount: int):
@@ -221,7 +221,7 @@ async def on_message(message):
 
 
 #play music command
-@command.command(description="Play Music!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Play Music!", guild=discord.Object(id=serverID here))
 async def play(interaction: discord.Interaction, song: str):
     guild = interaction.guild
     tracks = await wavelink.YouTubeTrack.search(query=song, return_first=False)
@@ -270,7 +270,7 @@ async def play(interaction: discord.Interaction, song: str):
 
 
 #skip music command
-@command.command(description="Skip the song!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Skip the song!", guild=discord.Object(id=serverID here))
 async def skip(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=False)
     guild = interaction.guild
@@ -282,7 +282,7 @@ async def skip(interaction: discord.Interaction):
         await interaction.followup.send(embed=embed)
 
 #resume music command
-@command.command(description="Resume the song!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Resume the song!", guild=discord.Object(id=serverID here))
 async def resume(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=False)
     guild = interaction.guild
@@ -293,7 +293,7 @@ async def resume(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed)
 
 #pause music command
-@command.command(description="Pause the song!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Pause the song!", guild=discord.Object(id=serverID here))
 async def pause(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=False)
     guild = interaction.guild
@@ -304,7 +304,7 @@ async def pause(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed)
 
 #stop music command
-@command.command(description="Stop the song!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Stop the song!", guild=discord.Object(id=serverID here))
 async def stop(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=False)
     guild = interaction.guild
@@ -315,7 +315,7 @@ async def stop(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed)
 
 #queue music command
-@command.command(description="Show the queue!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Show the queue!", guild=discord.Object(id=serverID here))
 async def queue(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=False)
     guild = interaction.guild
@@ -331,7 +331,7 @@ async def queue(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed)
 
 #now playing music command
-@command.command(description="Show the now playing song!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Show the now playing song!", guild=discord.Object(id=serverID here))
 async def nowplaying(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=False)
     guild = interaction.guild
@@ -347,7 +347,7 @@ async def nowplaying(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed)
 
 #leave music command
-@command.command(description="Leave the voice channel!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Leave the voice channel!", guild=discord.Object(id=serverID here))
 async def leave(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=False)
     guild = interaction.guild
@@ -358,7 +358,7 @@ async def leave(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed)
 
 #volume music command
-@command.command(description="Change the volume!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Change the volume!", guild=discord.Object(id=serverID here))
 async def volume(interaction: discord.Interaction, volume: int):
     await interaction.response.defer(ephemeral=False)
     guild = interaction.guild
@@ -370,7 +370,7 @@ async def volume(interaction: discord.Interaction, volume: int):
 
 
 # message counter command
-@command.command(description="Message counter!", guild=discord.Object(id=999343305659777103))
+@command.command(description="Message counter!", guild=discord.Object(id=serverID here))
 async def messages(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=False)
     channel = interaction.channel
